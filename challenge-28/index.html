@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Challenge 28</title>
+  </head>
+  <body>
+    <form data-cep="form">
+      <label for="cep">CEP:</label>
+      <input type="text" name="cep" data-cep="input-cep">
+      <button type="submit">CONSULTAR</button>
+    </form>
+
+    <h2 data-cep="status"></h2>
+
+    <div data-address-content>
+      <p>
+        <strong>Logradouro: </strong>
+        <span data-cep="street">-</span>
+      </p>
+
+      <p>
+        <strong>Bairro: </strong>
+        <span data-cep="neighbourhood">-</span>
+      </p>
+
+      <p>
+        <strong>Cidade: </strong>
+        <span data-cep="city">-</span>
+      </p>
+
+      <p>
+        <strong>Estado: </strong>
+        <span data-cep="state">-</span>
+      </p>
+
+      <p>
+        <strong>CEP: </strong>
+        <span data-cep="cep">-</span>
+      </p>
+    </div>
+
+    <script src="challenge-28.js" charset="utf-8"></script>
+  </body>
+</html>
