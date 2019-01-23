@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Challenge 29</title>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <span data-app="company-name"></span> -
+        <span data-app="company-phone"></span>
+      </h1>
+    </header>
+
+    <form action="/" data-app="form-register">
+      <ul>
+        <li>
+          <label>Imagem do carro:</label>
+          <input type="url" data-app="image">
+        </li>
+        <li>
+          <label>Marca / Modelo:</label>
+          <input type="text" data-app="brand-model">
+        </li>
+        <li>
+          <label>Ano:</label>
+          <input type="text" data-app="year">
+        </li>
+        <li>
+          <label>Placa:</label>
+          <input type="text" data-app="plate">
+        </li>
+        <li>
+          <label>Cor:</label>
+          <input type="text" data-app="color">
+        </li>
+        <li>
+          <button type="submit">Cadastrar</button>
+        </li>
+      </ul>
+    </form>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Imagem do carro</th>
+          <th>Marca / Modelo</th>
+          <th>Ano</th>
+          <th>Placa</th>
+          <th>Cor</th>
+        </tr>
+      </thead>
+
+      <tbody data-app="results"></tbody>
+    </table>
+
+    <script src="DOM.js" charset="utf-8"></script>
+    <script src="challenge-29.js" charset="utf-8"></script>
+  </body>
+</html>

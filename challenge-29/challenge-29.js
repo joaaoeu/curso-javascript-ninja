@@ -1,6 +1,5 @@
-(function() {
+(function($, document) {
   'use strict';
-
   /*
   Vamos estruturar um pequeno app utilizando módulos.
   Nosso APP vai ser um cadastro de carros. Vamos fazê-lo por partes.
@@ -35,5 +34,70 @@
   E aqui nesse arquivo, faça a lógica para cadastrar os carros, em um módulo
   que será nomeado de "app".
   */
+  var app = (function() {
+    function init() {
+      this.initEvents();
+      this.companyInfo();
+    }
 
-})();
+    function initEvents() {
+      $('[data-app="form-register"]').on('submit', this.handlerRegister);
+    }
+
+    function companyInfo() {
+      var ajax = new XMLHttpRequest();
+      ajax.open('GET', 'company.json', true);
+      ajax.send();
+      ajax.addEventListener('readystatechange', this.getCompanyInfo);
+    }
+
+    function getCompanyInfo() {
+      if(this.readyState !== 4 || this.status !== 200) return;
+
+      var data = JSON.parse(this.responseText);
+
+      $('[data-app="company-name"]').get().textContent  = data.name;
+      $('[data-app="company-phone"]').get().textContent = data.phone;
+    }
+
+    function handlerRegister(evt) {
+      evt.preventDefault();
+      $('[data-app="results"]').get().appendChild(app.createNewCar());
+    }
+
+    function createNewCar() {
+      var $fragment      = document.createDocumentFragment(),
+          $tr            = document.createElement('tr'),
+          $tdImage       = document.createElement('td'),
+          $tdBrandModel  = document.createElement('td'),
+          $tdYear        = document.createElement('td'),
+          $tdPlate       = document.createElement('td'),
+          $tdColor       = document.createElement('td');
+
+      $tdImage.textContent      = $('[data-app="image"]').get().value;
+      $tdBrandModel.textContent = $('[data-app="brand-model"]').get().value;
+      $tdYear.textContent       = $('[data-app="year"]').get().value;
+      $tdPlate.textContent      = $('[data-app="plate"]').get().value;
+      $tdColor.textContent      = $('[data-app="color"]').get().value;
+
+      $tr.appendChild($tdImage);
+      $tr.appendChild($tdBrandModel);
+      $tr.appendChild($tdYear);
+      $tr.appendChild($tdPlate);
+      $tr.appendChild($tdColor);
+
+      return $fragment.appendChild($tr);
+    }
+
+    return {
+      init: init,
+      initEvents: initEvents,
+      companyInfo: companyInfo,
+      getCompanyInfo: getCompanyInfo,
+      handlerRegister: handlerRegister,
+      createNewCar: createNewCar
+    }
+  })();
+
+  app.init();
+})(DOM, document);
